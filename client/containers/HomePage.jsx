@@ -8,11 +8,10 @@ import {
   Table,
   TableBody,
   TableHeader,
-  TableHeaderColumn,
   TableRow,
-  TableRowColumn
+  TableHeaderColumn
 } from "material-ui/Table";
-
+import MyTableRow from '../components/table-row'
 class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -43,8 +42,8 @@ class HomePage extends Component {
       .then(body =>
         this.setState({
           data: body.sort((a, b) => {
-            if (a.id > b.id) return 1;
-            else if (b.id > a.id) return -1;
+            if (a.station_id > b.station_id) return 1;
+            else if (a.station_id < b.station_id) return -1;
             return new Date(a.expected_arrival) - new Date(b.expected_arrival);
           })
         })
@@ -53,24 +52,20 @@ class HomePage extends Component {
   };
 
   render() {
+    const now = new Date();
     return (
       <Table>
         <TableHeader>
           <TableRow>
             <TableHeaderColumn>Line</TableHeaderColumn>
             <TableHeaderColumn>Name</TableHeaderColumn>
+            <TableHeaderColumn>Minutes Until</TableHeaderColumn>
             <TableHeaderColumn>Expected Time</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {this.state.data.map((slot, index) => (
-            <TableRow key={`${slot.id}-${slot.expected_arrival}`}>
-              <TableRowColumn>{slot.line}</TableRowColumn>
-              <TableRowColumn>{slot.name}</TableRowColumn>
-              <TableRowColumn>
-                {new Date(slot.expected_arrival).toLocaleString()}
-              </TableRowColumn>
-            </TableRow>
+          {this.state.data.map(slot => (
+            <MyTableRow key={`${slot.id}-${slot.expected_arrival}`} line={slot.line} station_name={slot.station_name} expected_arrival={slot.expected_arrival} now={now} />
           ))}
         </TableBody>
       </Table>

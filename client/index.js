@@ -12,7 +12,7 @@ class Index extends Component {
       <html>
         <head>
           <meta charSet="utf-8" />
-          <title>React Server Side Template</title>
+          <title>Astorian Train Times</title>
           <link rel="stylesheet" href="css/base.css" />
           <script
             dangerouslySetInnerHTML={{ __html: this.props.initialState }}

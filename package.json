@@ -18,6 +18,7 @@
     "bluebird": "^3.5.1",
     "body-parser": "^1.4.3",
     "csvtojson": "^1.1.9",
+    "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "gtfs-realtime-bindings": "0.0.4",
     "marked": "^0.3.5",
@@ -43,7 +44,7 @@
   "scripts": {
     "webpack-dev": "webpack --watch",
     "start": "NODE_ENV=development node ./server",
-    "heroku-postbuild": "webpack -p",
-    "build-prod": "webpack"
+    "heroku-postbuild": "npm run build-prod",
+    "build-prod": "NODE_ENV=production webpack -p"
   }
 }
