@@ -67,7 +67,9 @@ class HomePage extends Component {
             <TableRow key={`${slot.id}-${slot.expected_arrival}`}>
               <TableRowColumn>{slot.line}</TableRowColumn>
               <TableRowColumn>{slot.name}</TableRowColumn>
-              <TableRowColumn>{slot.expected_arrival}</TableRowColumn>
+              <TableRowColumn>
+                {new Date(slot.expected_arrival).toLocaleString()}
+              </TableRowColumn>
             </TableRow>
           ))}
         </TableBody>
